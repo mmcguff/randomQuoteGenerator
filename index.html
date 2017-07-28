@@ -4,15 +4,38 @@
         <title>Random Quote Generator</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/style.css" rel="stylesheet">
+       <!-- <link href="css/style.css" rel="stylesheet">-->
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     <body>
-    <h1>Welcome to my Quote Generator</h1>
+    <h1>Welcome to Aubrey's website!!!</h1>
 
     <div class="quote">
-    <blockquote>This is my Placeholder text</blockquote>
+        <blockquote>This is placeholder text.</blockquote>
     </div>
 
+   
 
+
+    <button id = "getQuote" class = "btn btn-primary">
+        Get Quote
+    </button>
     </body>
+    <script>
+  $(document).ready(function() {
+    $("#getQuote").on("click", function(){
+      
+      $(".quote").html("Bah Bah Boo Boo");
+      
+    });
+  });
+
+
+
+
+    </script>
+
+
+
+
 </html>
