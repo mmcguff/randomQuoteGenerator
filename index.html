@@ -40,16 +40,18 @@
                 $(".quote").html("<blockquote>" + a[0].content + "</br>" + "<p>— " + a[0].title + "</p>" + "</blockquote>")
                 currentQuote = a[0].content;
                 currentQuote = currentQuote.replace(/(<([^>]+)>)/ig,"");
+                currentQuote = currentQuote.replace(/[’]/ig,"'");
 
                 currentAuthor = a[0].title;
-                currentAuthor.replace(/(<([^>]+)>)/ig,"");
+                currentAuthor = currentAuthor.replace(/(<([^>]+)>)/ig,"");
+                currentAuthor = currentAuthor.replace(/[’]/ig,"'");
 
             });
 
         });
         $('#tweet-quote').on('click', function() {
     
-      openURL('https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + '"' + currentQuote + '" ' + currentAuthor);
+      openURL('https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + '"' + encodeURIComponent(currentQuote) + '"' + encodeURIComponent(currentAuthor));
     
   });
 
