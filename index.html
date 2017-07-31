@@ -20,17 +20,43 @@
         Get Quote
     </button>
 
+    <button id="tweet-quote" class="btn btn-primary">
+        Tweet
+    </button>
+
+
+
+
 
 </body>
 <script>
     $(document).ready(function () {
+          var currentQuote = '';
+          var currentAuthor = '';
+
+        function openURL(url){
+            window.open(url, 'Share', 'width=550, height=400, toolbar=0, scrollbars=1 ,location=0 ,statusbar=0,menubar=0, resizable=0');
+        }
+
         $("#getQuote").on("click", function () {
             var randomNumber = Math.floor(Math.random() * 42);//Appears there is only 42 quotes from my experinmentation  
             var url = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=" + randomNumber + "&callback=";
+          
             $.getJSON(url, function (a) {
                 $(".quote").html("<blockquote>" + a[0].content + "</br>" + "<p>— " + a[0].title + "</p>" + "</blockquote>")
+                currentQuote = a[0].content;
+                currentAuthor = a[0].title;
             });
+
+
         });
+        $('#tweet-quote').on('click', function() {
+    
+      openURL('https://twitter.com/intent/tweet?hashtags=quotes&related=freecodecamp&text=' + '"' + currentQuote + '" ' + currentAuthor);
+    
+  });
+
+
     });
 
 </script>
