@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>Random Quote Generator</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-       <!-- <link href="css/style.css" rel="stylesheet">-->
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    </head>
-    <body>
+
+<head>
+    <title>Random Quote Generator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link href="css/style.css" rel="stylesheet">-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+
+<body>
     <h1>Welcome to Matthew McGuff's Random Quote Generator</h1>
 
     <div class="quote">
         <blockquote>This is placeholder text.</blockquote>
     </div>
 
-    <button id = "getQuote" class = "btn btn-primary">
+    <button id="getQuote" class="btn btn-primary">
         Get Quote
     </button>
 
 
-    </body>
-    <script>
-  $(document).ready(function() {
-
-    
-
-
-    $("#getQuote").on("click", function(){
-
-    var randomNumber = Math.floor(Math.random() * 42);//Appears there is only 42 quotes from my experinmentation    
-
-
-      $.getJSON("http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=" + randomNumber + "&callback=", function(a) {
-  $(".quote").html("<blockquote>" + a[0].content + "</br>" + "<p>— " + a[0].title + "</p>" +  "</blockquote>")
-});
-
-      
+</body>
+<script>
+    $(document).ready(function () {
+        $("#getQuote").on("click", function () {
+            var randomNumber = Math.floor(Math.random() * 42);//Appears there is only 42 quotes from my experinmentation  
+            var url = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=" + randomNumber + "&callback=";
+            $.getJSON(url, function (a) {
+                $(".quote").html("<blockquote>" + a[0].content + "</br>" + "<p>— " + a[0].title + "</p>" + "</blockquote>")
+            });
+        });
     });
-  });
 
-
-
-
-    </script>
+</script>
 
 
 
