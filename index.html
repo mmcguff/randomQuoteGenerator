@@ -10,11 +10,13 @@
 </head>
 
 <body>
+
     <h1>Welcome to Matthew McGuff's Random Quote Generator</h1>
 
-    <div class="quote">
+    <div id="quote">
         <blockquote>This is placeholder text.</blockquote>
     </div>
+
 
     <button id="getQuote" class="btn btn-primary">
         Get Quote
@@ -32,20 +34,14 @@
             window.open(url, 'Share', 'width=550, height=400, toolbar=0, scrollbars=1 ,location=0 ,statusbar=0,menubar=0, resizable=0');
         }
 
+
         $("#getQuote").on("click", function () {
             var randomNumber = Math.floor(Math.random() * 42);//Appears there is only 42 quotes from my experinmentation  
             var url = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=" + randomNumber + "&callback=";
           
             $.getJSON(url, function (a) {
-                $(".quote").html("<blockquote>" + a[0].content + "</br>" + "<p>— " + a[0].title + "</p>" + "</blockquote>")
-                currentQuote = a[0].content;
-                currentQuote = currentQuote.replace(/(<([^>]+)>)/ig,"");
-                currentQuote = currentQuote.replace(/[’]/ig,"'");
-
-                currentAuthor = a[0].title;
-                currentAuthor = currentAuthor.replace(/(<([^>]+)>)/ig,"");
-                currentAuthor = currentAuthor.replace(/[’]/ig,"'");
-
+                $("#quote").html("<blockquote>" + a[0].content + "</br>" + "<p>— " + a[0].title + "</p>" + "</blockquote>")
+                currentQuote = document.getElementById("quote").textContent;
             });
 
         });
