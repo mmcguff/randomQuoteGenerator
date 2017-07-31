@@ -7,24 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- <link href="css/style.css" rel="stylesheet">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://use.fontawesome.com/8b410535d7.js"></script>
 
+</head>
+<style>
+
+
+h1{
+text-align: center;
+
+}
+
+#buttons, #quote{
+    text-align: center;
+}
+
+
+
+</style>
 <body>
 
-    <h1>Welcome to Matthew McGuff's Random Quote Generator</h1>
+    <h1 class="bg-info">Welcome to Matthew McGuff's Random Quote Generator</h1>
 
-    <div id="quote">
-        <blockquote>This is placeholder text.</blockquote>
+    <div id="quote" class="bg-primary">
+        <blockquote>Click to Generate a Quote!</blockquote>
     </div>
 
-
+<div id="buttons">
     <button id="getQuote" class="btn btn-primary">
-        Get Quote
+     <i class="fa fa-quote-right" aria-hidden="true"></i>Get Quote
     </button>
 
-    <button id="tweet-quote" class="btn btn-primary">
-        Tweet
+    <button id="tweet-quote" class="btn btn-info">
+     <i class="fa fa-twitter-square" aria-hidden="true"></i>Tweet 
     </button>
+</div>
+
+
 
 </body>
 <script>
@@ -37,11 +57,12 @@
 
         $("#getQuote").on("click", function () {
             var randomNumber = Math.floor(Math.random() * 42);//Appears there is only 42 quotes from my experinmentation  
-            var url = "http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=" + randomNumber + "&callback=";
+            var url = "https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=" + randomNumber + "&callback=";
           
             $.getJSON(url, function (a) {
                 $("#quote").html("<blockquote>" + a[0].content + "</br>" + "<p>— " + a[0].title + "</p>" + "</blockquote>")
                 currentQuote = document.getElementById("quote").textContent;
+                currentQuote += " #freeCodeCamp_randomQuoteGenerator"; 
             });
 
         });
